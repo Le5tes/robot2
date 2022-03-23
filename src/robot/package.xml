@@ -7,6 +7,7 @@
   <maintainer email="timwilliamson1337@gmail.com">tim</maintainer>
   <license>TODO: License declaration</license>
 
+  <exec_depend>rosbridge_server</exec_depend>
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>

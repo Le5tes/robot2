@@ -1,3 +1,4 @@
 <launch>
   <include file="$(find-pkg-share rosbridge_server)/launch/rosbridge_websocket_launch.xml"/>
+  <node name="control_listener" pkg="robot" exec="control_listener"/>
 </launch>

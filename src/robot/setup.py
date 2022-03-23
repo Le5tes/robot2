@@ -23,6 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'control_listener = robot.robot_listener:main'
         ],
     },
 )
