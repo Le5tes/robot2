@@ -34,3 +34,6 @@ rosdep install --from-paths src --ignore-src -r -y --rosdistro galactic
 apt install python3-colcon-common-extensions
 colcon build --packages-select robot
 . ./install/setup.bash
+
+# Launch!
+ros2 launch robot websocket.launch.xml
