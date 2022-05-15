@@ -35,10 +35,18 @@ rosdep install --from-paths src --ignore-src -r -y --rosdistro galactic
 echo "-- add gpiozero --"
 apt install python3-gpiozero python3-pigpio
 
-echo "Build package"
+echo "-- build package --"
 apt install python3-colcon-common-extensions
 colcon build --packages-select robot
 source ./install/setup.bash
+
+echo "-- set to run on startup --"
+LAUNCH_FILE=/etc/rc.local
+WORKING_DIR=$(pwd)
+if [ ! -f "$LAUNCH_FILE" ]; then
+  echo '#!/bin/bash' >> $LAUNCH_FILE
+fi
+echo "${WORKING_DIR}/run.sh" >> $LAUNCH_FILE
 
 echo "-- launch! --"
 ros2 launch robot websocket.launch.xml

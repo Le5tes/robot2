@@ -1,4 +1,5 @@
 import gpiozero
+import os
 
 class RobotController:
   def __init__(self):
@@ -16,6 +17,8 @@ class RobotController:
       self.robot.left()
     elif command == "stop":
       self.robot.stop()
+    elif command == "shutdown":
+      os.system("shutdown -h now")
     else:
       return "Command not recognised"
     return command
