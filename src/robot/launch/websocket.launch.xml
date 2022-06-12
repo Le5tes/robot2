@@ -1,4 +1,7 @@
 <launch>
   <include file="$(find-pkg-share rosbridge_server)/launch/rosbridge_websocket_launch.xml"/>
+  
+  <node name="v4l2_camera" pkg="v4l2_camera" exec="v4l2_camera_node"/>
+  <node name="web_video_server" pkg="web_video_server" exec="web_video_server"/>
   <node name="control_listener" pkg="robot" exec="control_listener"/>
 </launch>

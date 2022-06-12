@@ -31,12 +31,23 @@ apt install python3-rosdep
 rosdep init
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y --rosdistro galactic
+apt install python3-colcon-common-extensions
+
+echo "get webserver"
+cd ..
+git clone git@github.com:RobotWebTools/web_video_server.git
+cd web_video_server
+rosdep install --from-paths ./ --ignore-src -r -y --rosdistro galactic
+
+colcon build --packages-select web_video_server
+source ./install/setup.bash
+cd ../robot2
 
 echo "-- add gpiozero --"
 apt install python3-gpiozero python3-pigpio
 
 echo "-- build package --"
-apt install python3-colcon-common-extensions
+
 colcon build --packages-select robot
 source ./install/setup.bash
 
