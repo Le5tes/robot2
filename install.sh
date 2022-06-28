@@ -4,6 +4,11 @@
 # Sets up ROS2 Galactic, installs dependencies and builds the package
 # --Run with sudo--
 
+echo "-- stupid apt unattended upgrades - we need to access that lock file! --"
+systemctl stop unattended-upgrades
+apt remove unattended-upgrades
+
+
 echo "-- ensure locale set up properly --"
 apt update && apt install locales
 locale-gen en_GB en_GB.UTF-8
@@ -34,6 +39,7 @@ rosdep install --from-paths src --ignore-src -r -y --rosdistro galactic
 apt install python3-colcon-common-extensions
 
 echo "get webserver"
+apt install g++
 cd ..
 git clone git@github.com:RobotWebTools/web_video_server.git
 cd web_video_server
