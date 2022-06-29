@@ -43,6 +43,9 @@ apt install g++
 cd ..
 git clone git@github.com:RobotWebTools/web_video_server.git
 cd web_video_server
+git checkout ros2
+git pull
+
 rosdep install --from-paths ./ --ignore-src -r -y --rosdistro galactic
 
 colcon build --packages-select web_video_server
