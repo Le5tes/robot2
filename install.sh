@@ -48,7 +48,6 @@ git pull
 
 rosdep install --from-paths ./ --ignore-src -r -y --rosdistro galactic
 
-colcon build --packages-select web_video_server
 source ./install/setup.bash
 cd ../robot2
 
