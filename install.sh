@@ -41,9 +41,9 @@ apt install python3-colcon-common-extensions
 echo "get webserver"
 apt install g++
 cd ..
-git clone git@github.com:RobotWebTools/web_video_server.git
+git clone git@github.com:Le5tes/web_video_server.git
 cd web_video_server
-git checkout ros2
+git checkout built-ros2
 git pull
 
 rosdep install --from-paths ./ --ignore-src -r -y --rosdistro galactic
