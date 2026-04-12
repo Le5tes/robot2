@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Install script
-# Sets up ROS2 Galactic, installs dependencies and builds the package
+# Sets up ROS2 Kilted, installs dependencies and builds the package
 # --Run with sudo--
 
 echo "-- stupid apt unattended upgrades - we need to access that lock file! --"
@@ -26,16 +26,16 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 apt update
 
 echo "-- install ros --"
-apt install ros-galactic-ros-base
+apt install ros-kilted-ros-base
 
 echo "-- source ros --"
-source /opt/ros/galactic/setup.bash
+source /opt/ros/kilted/setup.bash
 
 echo "-- add dependencies --"
 apt install python3-rosdep
 rosdep init
 rosdep update
-rosdep install --from-paths src --ignore-src -r -y --rosdistro galactic
+rosdep install --from-paths src --ignore-src -r -y --rosdistro kilted
 apt install python3-colcon-common-extensions
 
 echo "get webserver"
@@ -46,7 +46,7 @@ cd web_video_server
 git checkout built-ros2
 git pull
 
-rosdep install --from-paths ./ --ignore-src -r -y --rosdistro galactic
+rosdep install --from-paths ./ --ignore-src -r -y --rosdistro kilted
 
 source ./install/setup.bash
 cd ../robot2

@@ -6,7 +6,7 @@
 python3 ./on-off-controller.py -i 24 -o 25 &
 
 echo "-- source ros --"
-source /opt/ros/galactic/setup.bash
+source /opt/ros/kilted/setup.bash
 
 echo "-- source project --"
 source ./install/setup.bash
