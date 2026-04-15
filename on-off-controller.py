@@ -2,6 +2,7 @@ import gpiozero
 import sys
 from subprocess import check_call
 import getopt
+import signal
 
 def parse_args(argv):
     try:
@@ -33,6 +34,8 @@ def run(in_pin, out_pin):
         check_call(['sudo', 'poweroff'])
 
     off_button.when_pressed = shutdown
+
+    signal.pause()
 
 if __name__ == "__main__":
    in_pin, out_pin = parse_args(sys.argv[1:])
