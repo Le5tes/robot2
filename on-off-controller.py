@@ -26,7 +26,7 @@ def run(in_pin, out_pin):
 
     output = gpiozero.OutputDevice(out_pin)
 
-    off_button = gpiozero.Button(in_pin)
+    off_button = gpiozero.Button(in_pin, pull_up=False)
 
     print("outputting keep-on signal")
     output.on()
