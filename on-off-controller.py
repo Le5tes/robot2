@@ -22,11 +22,13 @@ def parse_args(argv):
     return in_pin, out_pin
 
 def run(in_pin, out_pin):
+    print("starting on-off controller")
 
     output = gpiozero.OutputDevice(out_pin)
 
     off_button = gpiozero.Button(in_pin)
 
+    print("outputting keep-on signal")
     output.on()
 
     while off_button.is_pressed:
@@ -35,6 +37,7 @@ def run(in_pin, out_pin):
 
     off_button.wait_for_press()
 
+    print("powering off...")
     output.off()
     check_call(['sudo', 'poweroff'])
 
