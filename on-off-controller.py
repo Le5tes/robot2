@@ -2,7 +2,7 @@ import gpiozero
 import sys
 from subprocess import check_call
 import getopt
-import signal
+from time import sleep
 
 def parse_args(argv):
     try:
@@ -29,13 +29,14 @@ def run(in_pin, out_pin):
 
     output.on()
 
-    def shutdown():
-        output.off()
-        check_call(['sudo', 'poweroff'])
+    while off_button.is_pressed:
+        print("Button is pressed! Waiting for it not to be.")
+        sleep(1)
 
-    off_button.when_pressed = shutdown
+    off_button.wait_for_press()
 
-    signal.pause()
+    output.off()
+    check_call(['sudo', 'poweroff'])
 
 if __name__ == "__main__":
    in_pin, out_pin = parse_args(sys.argv[1:])
