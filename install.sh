@@ -3,11 +3,11 @@
 ### Install script
 # Sets up ROS2 Kilted, installs dependencies and builds the package
 # --Run with sudo--
+# -- Run from within this folder --
 
 echo "-- stupid apt unattended upgrades - we need to access that lock file! --"
 systemctl stop unattended-upgrades
 apt remove unattended-upgrades
-
 
 echo "-- ensure locale set up properly --"
 apt update && apt install locales
@@ -40,16 +40,7 @@ apt install python3-colcon-common-extensions
 
 echo "get webserver"
 apt install g++
-cd ..
-git clone git@github.com:Le5tes/web_video_server.git
-cd web_video_server
-git checkout built-ros2
-git pull
-
-rosdep install --from-paths ./ --ignore-src -r -y --rosdistro kilted
-
-source ./install/setup.bash
-cd ../robot2
+apt install ros-kilted-web-video-server
 
 echo "-- add gpiozero --"
 apt install python3-gpiozero python3-pigpio
@@ -64,6 +55,7 @@ LAUNCH_FILE=/etc/rc.local
 WORKING_DIR=$(pwd)
 if [ ! -f "$LAUNCH_FILE" ]; then
   echo '#!/bin/bash' >> $LAUNCH_FILE
+  chmod 755 $LAUNCH_FILE
 fi
 echo "${WORKING_DIR}/run.sh" >> $LAUNCH_FILE
 
