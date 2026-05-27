@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Install script
-# Sets up ROS2 Kilted, installs dependencies and builds the package
+# Sets up ROS2 Lyrical, installs dependencies and builds the package
 # --Run with sudo--
 # -- Run from within this folder --
 
@@ -26,21 +26,21 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 apt update
 
 echo "-- install ros --"
-apt install ros-kilted-ros-base
+apt install ros-lyrical-ros-base
 
 echo "-- source ros --"
-source /opt/ros/kilted/setup.bash
+source /opt/ros/lyrical/setup.bash
 
 echo "-- add dependencies --"
 apt install python3-rosdep
 rosdep init
 rosdep update
-rosdep install --from-paths src --ignore-src -r -y --rosdistro kilted
+rosdep install --from-paths src --ignore-src -r -y --rosdistro lyrical
 apt install python3-colcon-common-extensions
 
 echo "get webserver"
 apt install g++
-apt install ros-kilted-web-video-server
+apt install ros-lyrical-web-video-server
 
 echo "-- add gpiozero --"
 apt install python3-gpiozero python3-pigpio

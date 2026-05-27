@@ -6,7 +6,7 @@
 python3 ./on-off-controller.py -i 24 -o 25 &>> on_off_controller.log &
 
 echo "-- source ros --"
-source /opt/ros/kilted/setup.bash
+source /opt/ros/lyrical/setup.bash
 
 echo "-- source project --"
 source ./install/setup.bash
