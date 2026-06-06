@@ -45,7 +45,10 @@ apt install ros-kilted-web-video-server
 echo "-- add gpiozero --"
 apt install python3-gpiozero python3-pigpio
 
-echo "-- build package --"
+echo "-- add vision dependencies --"
+apt install python3-picamera2 python3-opencv
+
+echo "-- build packages --"
 
 colcon build --packages-select robot
 source ./install/setup.bash
