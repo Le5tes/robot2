@@ -16,7 +16,7 @@ class HaarCascadeDetector(FaceDetector):
         """
 
         
-        self.face_cascade = cv2.CascadeClassifier('data/haarcascades/haarcascade_frontalface_alt.xml')
+        self.face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
         
         if self.face_cascade.empty():
             raise RuntimeError(f"Failed to load Haar cascade")
