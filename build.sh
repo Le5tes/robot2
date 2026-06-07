@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source /opt/ros/lyrical/setup.bash
 
 colcon build --packages-select robot
