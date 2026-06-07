@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(robot)
 
+SET(ENV{PYTHONPATH} "/opt/ros/lyrical/lib/python3.14/site-packages/")
+
 # Find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
@@ -18,6 +20,13 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})
+
+# Install Python executables (scripts from entry_points)
+install(PROGRAMS
+  scripts/control_listener
+  scripts/vision_node
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 # Install launch files
 install(DIRECTORY
