@@ -9,6 +9,6 @@
     <param name="camera_height" value="480"/>
     <param name="camera_framerate" value="15"/>
     <param name="detector_type" value="haar"/>
-    <param name="debug_draw_boxes" value="false"/>
+    <param name="debug_draw_boxes" value="true"/>
   </node>
 </launch>

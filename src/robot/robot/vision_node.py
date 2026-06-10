@@ -132,17 +132,27 @@ class VisionNode(Node):
         """
         try:
 
+            def convert_and_publish_image(image_array):
+                image_msg = self.bridge.cv2_to_imgmsg(image_array, encoding="rgb8")
+                self.image_pub.publish(image_msg)
+
             array = self.camera.capture_array("main")
 
-            image_msg = self.bridge.cv2_to_imgmsg(array, encoding="rgb8")
-
-            self.image_pub.publish(image_msg)
+            if not self.debug_draw_boxes:
+                convert_and_publish_image(array)
 
             detections = self.detector.detect(array)
 
             detections_msg = self.construct_face_detection_array(detections)
 
             self.faces_pub.publish(detections_msg)
+
+            if self.debug_draw_boxes:
+                for detection in detections:
+                    pt1 = detection[:2]
+                    pt2 = (detection[0] + detection[2], detection[1]+detection[3])
+                    cv2.rectangle(array, pt1, pt2, color=(0,255,0))
+                convert_and_publish_image(array)
             
         except Exception as e:
             self.get_logger().error(f"Error processing frame: {e}")
