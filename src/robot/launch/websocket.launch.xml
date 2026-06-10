@@ -4,7 +4,7 @@
   <node name="web_video_server" pkg="web_video_server" exec="web_video_server"/>
   <node name="control_listener" pkg="robot" exec="control_listener"/>
   
-  <node name="vision_node" pkg="robot" exec="vision_node" ros_args="--log-level DEBUG">
+  <node name="vision_node" pkg="robot" exec="vision_node">
     <param name="camera_width" value="640"/>
     <param name="camera_height" value="480"/>
     <param name="camera_framerate" value="15"/>
