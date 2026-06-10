@@ -138,8 +138,8 @@ class VisionNode(Node):
                 self.image_pub.publish(image_msg)
             t1 = perf_counter()
             array = self.camera.capture_array("main")
-            t2 = perf_counter
-            self.get_logger().info(f"time to capture: {t2-t1}")
+            t2 = perf_counter()
+            self.get_logger().debug(f"time to capture: {t2-t1}")
             if not self.debug_draw_boxes:
                 convert_and_publish_image(array)
 
@@ -147,7 +147,7 @@ class VisionNode(Node):
             detections = self.detector.detect(array)
             t4 = perf_counter()
 
-            self.get_logger().info(f"time to detect: {t4-t3}")
+            self.get_logger().debug(f"time to detect: {t4-t3}")
 
             detections_msg = self.construct_face_detection_array(detections)
 
