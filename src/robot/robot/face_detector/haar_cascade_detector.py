@@ -1,4 +1,6 @@
 
+import os
+
 from robot.face_detector.face_detector import FaceDetector
 import cv2
 
@@ -14,12 +16,14 @@ class HaarCascadeDetector(FaceDetector):
             cascade_path: Path to Haar cascade XML file.
                          If None, uses OpenCV's default frontal face cascade.
         """
-
+        if cascade_path is None:
+            # Use OpenCV's built-in cascade
+            cascade_path = os.path.expanduser('~/opencv/data/haarcascades/haarcascade_frontalface_default.xml')
         
-        self.face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+        self.face_cascade = cv2.CascadeClassifier(cascade_path)
         
         if self.face_cascade.empty():
-            raise RuntimeError(f"Failed to load Haar cascade")
+            raise RuntimeError(f"Failed to load Haar cascade from {cascade_path}")
     
     def detect(self, frame):
         """

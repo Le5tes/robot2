@@ -48,6 +48,9 @@ apt install python3-gpiozero python3-pigpio
 echo "-- add vision dependencies --"
 apt install python3-picamera2 python3-opencv
 
+echo "-- need to get opencv to get the haarcascade file --"
+git clone git@github.com:opencv/opencv.git
+
 echo "-- build packages --"
 
 colcon build --packages-select robot
