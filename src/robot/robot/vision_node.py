@@ -26,6 +26,7 @@ from sensor_msgs.msg import Image
 from std_msgs.msg import Header
 from cv_bridge import CvBridge
 from picamera2 import Picamera2
+from time import perf_counter
 import cv2
 
 import numpy as np
@@ -135,13 +136,18 @@ class VisionNode(Node):
             def convert_and_publish_image(image_array):
                 image_msg = self.bridge.cv2_to_imgmsg(image_array, encoding="rgb8")
                 self.image_pub.publish(image_msg)
-
+            t1 = perf_counter()
             array = self.camera.capture_array("main")
-
+            t2 = perf_counter
+            self.get_logger().debug(f"time to capture: {t2-t1}")
             if not self.debug_draw_boxes:
                 convert_and_publish_image(array)
 
+            t3 = perf_counter()
             detections = self.detector.detect(array)
+            t4 = perf_counter()
+
+            self.get_logger().debug(f"time to detect: {t4-t3}")
 
             detections_msg = self.construct_face_detection_array(detections)
 
