@@ -18,7 +18,8 @@ class HaarCascadeDetector(FaceDetector):
         """
         if cascade_path is None:
             # Use OpenCV's built-in cascade
-            cascade_path = os.path.abspath('../opencv/data/haarcascades/haarcascade_frontalface_default.xml')
+            home = os.environ['HOME']
+            cascade_path = f"{home}/opencv/data/haarcascades/haarcascade_frontalface_default.xml"
         
         self.face_cascade = cv2.CascadeClassifier(cascade_path)
         
