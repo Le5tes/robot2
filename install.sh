@@ -63,7 +63,7 @@ if [ ! -f "$LAUNCH_FILE" ]; then
   echo '#!/bin/bash' >> $LAUNCH_FILE
   chmod 755 $LAUNCH_FILE
 fi
-echo "${WORKING_DIR}/run.sh ${WORKING_DIR}" >> $LAUNCH_FILE
+echo "${WORKING_DIR}/run.sh $WORKING_DIR" >> $LAUNCH_FILE
 
 echo "-- launch! --"
 ros2 launch robot websocket.launch.xml
