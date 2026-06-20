@@ -3,13 +3,13 @@
 ## Important to start the on-off controller first!
 # This controls the power supply to the pi - when the on button is pressed we get ~20s 
 # to boot up and start outputting a signal that will keep the pi powered up.
-python3 {$1}/on-off-controller.py -i 24 -o 25 &>> on_off_controller.log &
+python3 $1/on-off-controller.py -i 24 -o 25 &>> on_off_controller.log &
 
 echo "-- source ros --"
 source /opt/ros/lyrical/setup.bash
 
 echo "-- source project --"
-source {$1}/install/setup.bash
+source $1/install/setup.bash
 
 echo "-- source web_video_server --"
 source ~/web_video_server/install/setup.bash
