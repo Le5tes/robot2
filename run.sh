@@ -11,8 +11,5 @@ source /opt/ros/lyrical/setup.bash
 echo "-- source project --"
 source $1/install/setup.bash
 
-echo "-- source web_video_server --"
-source ~/web_video_server/install/setup.bash
-
 echo "-- launch! --"
 ros2 launch robot websocket.launch.xml
